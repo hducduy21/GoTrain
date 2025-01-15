@@ -1,0 +1,48 @@
+{{define "Login"}}
+
+<div class="flex items-center justify-center min-h-screen">
+  <div class="w-full max-w-md p-8 rounded-lg shadow-lg">
+    <h2 class="mb-6 text-2xl font-bold text-center text-[#008282]">Login</h2>
+    <form hx-post="/login" hx-target="#app" hx-swap="innerHTML">
+      <div class="mb-4">
+        <label for="username" class="block font-semibold text-[#4b5563]"
+          >Username</label
+        >
+        <input
+          type="text"
+          id="username"
+          name="username"
+          class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          required
+        />
+      </div>
+     
+      <div class="mb-4">
+        <label for="password" class="block font-semibold text-[#4b5563]"
+          >Password</label
+        >
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          required
+        />
+      </div>
+      
+      <div class="flex items-center justify-between">
+        <button
+          type="submit"
+          class="w-full px-4 py-2 text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+        >
+          Login
+        </button>
+      </div>
+      {{ if .ErrorMessage }} <p class="text-xs italic text-red-500">{{ .ErrorMessage }}</p> {{ end }}
+    </form>
+    <span>Don't have an account? <a hx-get="/register" hx-swap="innerHTML" hx-target="#app" class="cursor-pointer text-sky-500">Register</a></span>
+  </div>
+</div>
+
+{{end}}
+

@@ -1,0 +1,28 @@
+{
+  "name": "emd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vite.config.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"vite build --watch\" \"tailwindcss -i ./src/index.css -o ./static/index.css --watch\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "alpinejs": "^3.14.8",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.2",
+    "flowbite": "^2.5.2",
+    "font-awesome": "^4.7.0",
+    "htmx.org": "^1.9.12",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "prettier-plugin-go-template": "^0.0.15",
+    "react-toastify": "^11.0.2",
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.0.7"
+  }
+}

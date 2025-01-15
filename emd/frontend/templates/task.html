@@ -1,0 +1,81 @@
+{{ define "TaskTable" }}
+<div class="flex justify-center mt-5 task" x-data="tasks">
+  <div class="w-full max-w-3xl">
+    <form
+      id="task-form-add"
+      class="flex gap-3 mb-4"
+      @submit.prevent="createTask"
+    >
+      <input
+        type="text"
+        id="newtask"
+        name="newtask"
+        x-model="newTaskName"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+        placeholder="Enter task name"
+        required
+      />
+      <button
+        type="submit"
+        class="w-[100px] text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+      >
+        Add Task
+      </button>
+    </form>
+
+    <div class="relative w-full overflow-x-auto">
+      <table
+        class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400"
+      >
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-3">Name</th>
+            <th scope="col" class="px-6 py-3">Members</th>
+            <th scope="col" class="px-6 py-3 text-center ">Action</th>
+            <th scope="col" class="px-6 py-3 text-center ">Done</th>
+          </tr>
+        </thead>
+        <tbody id="task-list">
+          <template x-for="task in tasks" :key="task.id">
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <td>
+                <input 
+                  type="text"
+                  x-model="task.name"
+                  @change="updateTask(task.id, task.name)"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+              </td>
+              <td class="px-6 py-4">
+                <template x-for="user in task.edges.users" :key="user.username">
+                  <span x-text="user.name"></span>
+                </template>
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex justify-between text-blue-600 cursor-pointer">
+                  <a @click.prevent="joinTask(task.id)">Join</a>
+                  <a @click.prevent="leaveTask(task.id)">Leave</a>
+                  <a @click.prevent="deleteTask(task.id)">Delete</a>
+                </div>
+              </td>
+              <td
+                scope="row"
+                class="flex justify-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                <input
+                  id="remember"
+                  type="checkbox"
+                  x-model="task.done"
+                  @change="updateTaskStatus(task.id, task.done)"
+                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                />
+              </td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{{ end }}

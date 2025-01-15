@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My App</title>
+    <link href="/static/index.css" rel="stylesheet" />
+    <link href="/static/_name_.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="app">
+      <div
+        hx-trigger="load"
+        hx-get="/home"
+        hx-target="#app"
+        hx-swap="innerHTML"
+      ></div>
+    </div>
+
+    <script src="/static/index.js" type="text/javascript"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{{ define "Base" }} 
+<div class="w-full h-[60px] mb-[25px] shadow-lg">
+  <div class="flex items-center justify-end h-full px-5">
+    <i
+      hx-delete="/logout"
+      hx-target="#app"
+      hx-swap="innerHTML"
+      class="text-2xl origin-center cursor-pointer fa-solid fa-right-from-bracket hover:text-3xl"
+    ></i>
+  </div>
+  <div>
+    {{template "TaskTable" .}}
+  </div>
+</div>
+{{ end }}
